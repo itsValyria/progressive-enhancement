@@ -11,14 +11,83 @@
 			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
 
 			/* Hint: Hoe ver ga je qua styling? Vraag jezelf dit altijd af */
+
+				.switch-container {
+					position: relative;
+					display: inline-block;
+					width: 60px;
+					height: 34px;
+				}
+
+				.switch-input {
+					display: none;
+				}
+
+				.switch-inner {
+					width: 100%;
+					height: 100%;
+					background-color: #ccc;
+					border-radius: 17px;
+					transition: background-color 0.3s;
+					position: relative;
+				}
+
+				.switch-switch {
+					position: absolute;
+					top: 50%;
+					left: 4px;
+					transform: translateY(-50%);
+					width: 26px;
+					height: 26px;
+					background-color: white;
+					border-radius: 50%;
+					transition: left 0.3s;
+					cursor: pointer;
+				}
+
+				.switch-input:checked + .switch-label .switch-inner {
+					background-color: #66E5BF;
+				}
+
+				.switch-input:checked + .switch-label .switch-switch::before {
+					content: 'aan';
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					font-size: 12px;
+					font-weight: bold;
+					color: black;
+				}
+
+				.switch-input:checked + .switch-label .switch-switch {
+				  left: 50%;
+				}
+
+				.switch-label {
+					display: block;
+					width: 100%;
+					height: 100%;
+					cursor: pointer;
+					position: relative;
+				}
+
+
+
 		</style>
 	</head>
 	<body>
 		<h1>Switch control</h1>
-		
-		<!-- Hint: Op het WebKit blog stond hierover vorige maand een goed artikel -->
 
-		<details open>
+		<div class="switch-container">
+			<input type="checkbox" id="switch" class="switch-input">
+			<label for="switch" class="switch-label">
+				<div class="switch-inner"></div>
+				<div class="switch-switch"></div>
+			</label>
+		</div>		
+
+		<details>
 			<summary>Demo video</summary>
 			<video src="assets/switch.mp4" width="119" height="67" controls muted autoplay loop>
 				<a href="assets/switch.mp4">assets/switch.mp4</a>
