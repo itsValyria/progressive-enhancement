@@ -9,35 +9,117 @@
 			/* Schrijf hier gewoon je CSS voor dit component */
 
 			/* Hint: welk layout model is handig om content naast elkaar te zetten? */
+
+			ul, li {
+				list-style-type: none;
+				text-decoration: none;
+				padding: 0;
+				margin: 0
+			}
+
+			ul {
+				display: flex;
+				overflow-x: auto;
+				scroll-snap-type: x mandatory;
+				scroll-behavior: smooth;
+
+				font-size: 2em;
+				font-weight: bold;
+				text-align: center;
+				height: 12em;
+			}
+
+			li {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 2em;
+				min-width: 24em;
+				scroll-snap-align: start;
+			}
+
+			li:nth-child(3n + 1) {
+				background-color: var(--purple);
+			}
+
+			li:nth-child(3n + 2) {
+				background-color: var(--yellow);
+			}
+
+			li:nth-child(3n + 3) {
+				background-color: var(--green);
+			}
+
+			button {
+				background-color: var(--blue);
+				color: var(--green);
+				padding: 1em;
+				border: none;
+				border-radius: 8px;
+				font-size: 1em;
+				width: 8em;
+			}
+
+			.prev-btn, .next-btn {
+					position: absolute;
+					top: 50%;
+					transform: translateY(-200%);
+					z-index: 1;
+			}
+
+			.prev-btn,
+			.next-btn {
+					display: none;
+			}
+
+			.prev-btn {
+					left: 2em;
+			}
+
+			.next-btn {
+					right: 2em;
+			}
+
 		</style>
-		<script type="module">
-			/* Schrijf hier eventueel je client-side JavaScript */
-		</script>
 	</head>
 	<body>
 		<h1>Carrousel</h1>
 
-		<!-- Content
+		<button id="prevBtn" class="prev-btn" onclick="scrollCarousel('prev')">Vorige</button>
+		<button id="nextBtn" class="next-btn" onclick="scrollCarousel('next')">Volgende</button>		
 
-		“Websites leren bouwen, én praktijkervaring opdoen?”
+		<ul id="carousel">
+			<li>“Websites leren bouwen, én praktijkervaring opdoen?”</li>
+			<li>“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”</li>
+			<li>“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”</li>
+			<li>“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”</li>
+			<li>“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”</li>
+			<li>“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”</li>
+		</ul>
+		
 
-		“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”
-
-		“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”
-
-		“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”
-
-		“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”
-
-		“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”
-
-		-->
-
-		<details open>
+		<details>
 			<summary>Demo video</summary>
 			<video src="assets/carrousel.mp4" width="1298" height="469" controls muted autoplay loop>
 				<a href="assets/carrousel.mp4">assets/carrousel.mp4</a>
 			</video>
 		</details>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+			document.getElementById('prevBtn').style.display = 'inline-block';
+			document.getElementById('nextBtn').style.display = 'inline-block';
+			});
+
+			function scrollCarousel(direction) {
+					const carousel = document.getElementById('carousel');
+					const scrollAmount = direction === 'prev' ? -400 : 400;
+					carousel.scrollBy({
+							left: scrollAmount,
+							behavior: 'smooth'
+					});
+			}
+		</script>
+
 	</body>
 </html>
